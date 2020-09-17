@@ -1,0 +1,168 @@
+Nano is an easy to use command line text editor for Unix and Linux operating systems (WYSIWYG - what you see is what you get).
+
+******** Installing Nano *********
+
+$ nano --version
+
+The output will look something like this:
+
+ GNU nano, version 2.9.3
+ (C) 1999-2011, 2013-2018 Free Software Foundation, Inc.
+ (C) 2014-2018 the contributors to nano
+ Email: nano@nano-editor.org    Web: https://nano-editor.org/
+ Compiled options: --disable-libmagic --disable-wrapping-as-root --enable-utf8
+
+But if you don't have nano installed on your sysytem, you can install it using the package manager of your distribution.
+
+Better to update the apt repositories:
+$ sudo apt update
+
+----- Installing Nano on Ubuntu and Debian
+
+$ sudo apt install nano (sudo part is meant for running this command as a root user)
+
+----- Installing Nano on CentOS and Fedora
+
+$ sudo yum install nano
+
+******* Create a file ******
+$ nano
+
+Write whatever you want and to exit press Ctrl+x, it will ask you to save or discard the file.
+If you press y to save the file, it will ask you to name the file. Type in a name and press enter.
+
+******* Opening file *********
+
+To open an existing file or to create a new file, type nano followed by the file name:
+
+$ nano filename
+
+$ nano /path/to/filename (to open a file in another directory, include the absolute path of the file)
+
+This opens a new editor window, and you can start editing the file.
+At the bottom of the window, there is a list of the most basic command shortcuts to use with nano editor.
+
+All commands are prefixed with either ^ or M character. The caret symbol (^) represents the Ctrl key. For eg, the ^G commands means to press the Ctrl and G keys together at the same time (will give a ist of all commands). The letter M represents the Alt key.
+
+To open a file as read only:
+
+$ nano -v filename
+
+To open a file you must have read permissions to the file.
+
+If you want to open a file with the cursor on a specified line and character use the following:
+
+$ nano +line_number, character_number filename
+
+Ex: 
+$ cat abc.txt
+Hi Linux aspirants
+Thanks for learning Linux
+It will be useful for working in prod environment
+
+$ nano +2,3 abc.txt
+My cursor will be at 'a' of Thanks in the second line
+
+If you omit the character_number the cursor will be positioned on the first character.
+
+------- Backup
+
+Using the -B option when staring nano will create backups of the file for you, while using the -C option will allow you to specify the directory to place backup files in:
+
+$ nano -BC ~/backups hello.py
+
+****** Editing Files *******
+Nano is a modeless editor, which means that you can start typing and editing the text immediately after opening the file.
+
+To move a cursor to a specific line and character number, use the Ctrl+_(Ctrl+Shift+-) command.
+The menu on the bottom of the screen will change. Enter the number in the "Enter line number, column number:" field and hit enter.
+
+Note : Whenever you are opening an important configuration file, it is recommended to use the -w option. It will open the file in a standard format. If you don't use this option, nano will wrap the text to fit the display by default.
+
+$ sudo nano -w /etc/.odbc.ini
+
+******* Searching and Replacing *******
+To search for a text, press Ctrl+w, type in the search term, and press enter.
+The cursor will move to the first match. To move to the next match, press Alt+w.
+Will display "It is the only occurrence" if your search text occurs only once.
+
+
+If you want to search and replace, press Ctrl+\. Enter the search term and the text to be replaced with. The editor will move to the first match and ask you whether to replace it. After hitting Y or N it will move to the next match. Pressing A will replace all matches.
+
+If you want to go back after typing a shortcut, just use Ctrl+c to cancel the current process.
+
+******* Copy, Cut and Paste ********
+To select text, move the cursor to the beginning of the text and press Alt+a.
+This will set a selection mark. Move the cursor to the end of the text you want to select using the arrow keys. The selected text will be highlighted. If you want to cancel the selection press Ctrl+6.
+
+Copy the selected text to the clipboard using the Alt+6 command. Ctrl+k will cut the selected text.
+
+If you want to cut whole lines, simply move the cursor to the line and press Ctrl+k. You can cut mutiple lines by hitting Ctrl+k several times.
+
+To paste the text move the cursor to where you want to put the text and press Ctrl+u.
+
+******* Save and Exit *******
+To save the changes you have made to the file, press Ctrl+o. If the file doesn't already exist, it will be created once you save it.
+
+To exit nano, press Ctrl+x. If there are unsaved changes, you will be asked whether you want to save the changes.
+
+To save the file, you must have write permissions to the file. If you are creating a new file, you need to have write permission to the directory where the file is created.
+
+******* Customizing Nano *******
+
+When nano is launched, it reads its configuration parameters from the system-wide configuration file /etc/nanorc and from the user-specific files ~/.config/nano/nanorc and ~/.nanorc if the files are present.
+
+Options specified in the user files take precedence over the global options.
+
+**** Syntax Highlighting ******
+On most Linux systems, the syntax files are stored in the /usr/share/nano directory and included by default in the /etc/nanorc configuration file.
+
+/etc/nanorc
+include "/usr/share/nano/*.nanorc"
+
+The easiest option to enable highlighting for a new file type is to copy the file containing the syntax highlighting rules to the /usr/share/nano directory.
+
+
+To use nano as the default text editor, you need to change the VISUAL and EDITOR environment variables.
+
+Bash users can export the variables in the ~/.bashrc file:
+export VISUAL = nano
+export EDITOR = "$VISUAL"
+
+******* Spell check ********
+$ sudo apt install spell
+
+After installing, you can spell check in the text editor by pressing Ctrl+t. It will select the misspelled word and ask for a correct replacement.
+
+******* Cheatsheet ********
+
+Show all commands(Get help) - Ctrl+g
+Save a file - Ctrl+o
+Exit a file - Ctrl+x
+Create backup of a file - Alt+b
+Select text(given cursor at beginning of text) - Alt+a
+Copy selected text - Alt+6
+Cut - Ctrl+k
+Paste - Ctrl+u
+Undo - Alt+u
+Redo - Alt+e
+Ctrl+j - Justifies the current paragraph
+Insert another file into current one(Read file from a path) - Ctrl+r
+Regex Search - Alt+r
+Search for a specified phrase in your text - Ctrl+w
+Continue with next result when searching - Alt+w
+Replace - Ctrl+r
+move forward one character - Ctrl+f
+move back one character - Ctrl+b
+move forward one word - Ctrl+space
+move back one word - Alt+space
+move to previous line - Ctrl+p
+move to next line - Ctrl+n
+move to next page - Ctrl+v
+move to previous page - Ctrl+y
+move to beginning of the line - Ctrl+a
+move to end of the line - Ctrl+e
+Invokes the spell checker(if available) - Ctrl+t
+
+
+
